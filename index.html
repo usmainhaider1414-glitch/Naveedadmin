@@ -13,46 +13,159 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background-color: #f4f6f9; color: #1a1a1a; padding: 20px; }
         
-        /* Main Dashboard Container - Shuru me hidden rahega jab tak login na ho */
+        /* ==================== NEUMORPHIC LOGIN OVERLAY ==================== */
+        .login-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: #e0e8ec; 
+            z-index: 9999; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px;
+        }
+        .login-box { 
+            background: #e0e8ec; 
+            padding: 40px 30px; 
+            border-radius: 50px; 
+            text-align: center;
+            height: 65%;
+            width: 100%;
+            max-width: 380px; 
+            box-shadow: 7px 7px 15px #b8c4cc, -7px -7px 15px #ffffff;
+        }
+        .login-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            /* Auto color change functional rules */
+            animation: rainbowColors 5s infinite linear;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        /* Yeh automatic rang badalne ka main function hai */
+        @keyframes rainbowColors {
+            0%   { color: #ff4444; } /* Red */
+            20%  { color: #ffaa00; } /* Orange/Yellow */
+            40%  { color: #25D366; } /* WhatsApp Green */
+            50%  { color: #000000; } /* WhatsApp Green */
+            53%  { color: #03a9f4; } /* WhatsApp Green */
+            58%  { color: #e93e61; } /* WhatsApp Green */
+            62%  { color: #4caf50; } /* WhatsApp Green */
+            68%  { color: #ffeb3b; } /* WhatsApp Green */
+            85%  { color: #0088cc; } /* Blue */
+            80%  { color: #9c27b0; } /* Purple */
+            100% { color: #ff4444; } /* Wapas Red par loop khatam */
+        }
+        }
+        .login-box h2 { 
+            color: #006652; 
+            font-size: 1.5rem; 
+            margin-bottom: 25px; 
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #7a8a94;
+            margin-left: 15px;
+            margin-bottom: 8px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .login-box input { 
+            width: 100%; 
+            padding: 15px 20px; 
+            border: none;
+            outline: none;
+            background: #e0e8ec;
+            border-radius: 20px; 
+            font-size: 1rem;
+            color: #333;
+            box-shadow: inset 6px 6px 10px #b8c4cc, inset -6px -6px 10px #ffffff;
+            transition: all 0.3s ease;
+        }
+        .login-box input:focus {
+            box-shadow: inset 3px 3px 6px #b8c4cc, inset -3px -3px 6px #ffffff;
+        }
+        .login-box button { 
+            background: #e0e8ec; 
+            color: #006652; 
+            border: none; 
+            padding: 15px; 
+            border-radius: 20px; 
+            font-weight: bold; 
+            font-size: 1rem;
+            width: 100%; 
+            cursor: pointer; 
+            margin-top: 10px;
+            box-shadow: 5px 5px 10px #b8c4cc, -5px -5px 10px #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        .login-box button:hover {
+            color: #004d3e;
+            box-shadow: 2px 2px 5px #b8c4cc, -2px -2px 5px #ffffff;
+        }
+        .login-box button:active {
+            box-shadow: inset 3px 3px 6px #b8c4cc, inset -3px -3px 6px #ffffff;
+        }
+
+        /* ==================== MAIN DASHBOARD LAYOUT ==================== */
         .admin-container { max-width: 800px; margin: 0 auto; display: none; }
         h1 { color: #ff4444; font-size: 1.4rem; margin-bottom: 20px; border-bottom: 2px solid #ff4444; padding-bottom: 8px; }
         
-        /* Firebase Login Overlay Style */
-        .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a1a; z-index: 1001; display: flex; justify-content: center; align-items: center; }
-        .login-box { background: white; padding: 35px 30px; border-radius: 12px; text-align: center; width: 340px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-        .login-box h2 { margin-bottom: 5px; color: #333; font-size: 1.4rem; }
-        .login-box p { font-size: 0.85rem; color: #666; margin-bottom: 20px; }
-        .login-box input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 0.95rem; outline: none; text-align: left; }
-        .login-box button { background: #25D366; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; font-size: 1rem; margin-top: 12px; transition: 0.2s; }
-        .login-box button:hover { background: #20ba59; }
-        .error-msg { color: #ff4444; font-size: 0.85rem; margin-top: 12px; display: block; font-weight: 600; line-height: 1.3; }
-        
-        /* Top Header Buttons */
-        .header-actions { float: right; margin-top: -45px; display: flex; gap: 10px; }
-        .logout-btn { background: #ff4444; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.85rem; }
-
         /* ==================== LIVE STATS ANALYTICS PANEL ==================== */
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 25px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 25px; }
+        @media(min-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(4, 1fr); }
+        }
         .stat-card { background: white; padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; }
         .stat-card h3 { font-size: 0.85rem; color: #666; margin-bottom: 5px; text-transform: uppercase; }
         .stat-card .count { font-size: 1.6rem; font-weight: bold; color: #1a1a1a; }
+        
         .stat-card.online-card { border-left: 4px solid #25D366; }
         .stat-card.online-card .count { color: #25D366; }
+        
         .stat-card.visitors-card { border-left: 4px solid #0088cc; }
         .stat-card.visitors-card .count { color: #0088cc; }
+        
         .stat-card.groups-card { border-left: 4px solid #ffaa00; }
         .stat-card.groups-card .count { color: #ffaa00; }
+        
+        /* New Total Groups Card Style */
+        .stat-card.total-groups-card { border-left: 4px solid #9c27b0; }
+        .stat-card.total-groups-card .count { color: #9c27b0; }
 
         /* Featured Input Form Panel styling */
-        .featured-panel { background: white; padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 2px dashed #25D366; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .featured-panel {
+            background: white; padding: 20px; border-radius: 12px; margin-bottom: 25px;
+            border: 2px dashed #25D366; box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
         .featured-panel h2 { font-size: 1.1rem; color: #25D366; margin-bottom: 12px; }
         .featured-panel input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 6px; outline: none;}
         
         /* Live Preview Box Inside Admin */
-        .admin-preview-box { display: flex; align-items: center; gap: 15px; background: #f8f9fa; padding: 12px; border-radius: 8px; margin-bottom: 15px; border: 1px dashed #ccc; }
+        .admin-preview-box {
+            display: flex; align-items: center; gap: 15px; background: #f8f9fa;
+            padding: 12px; border-radius: 8px; margin-bottom: 15px; border: 1px dashed #ccc;
+        }
         .admin-preview-dp { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #eee; border: 2px solid #25D366; }
         .status-text { font-size: 0.85rem; color: #25D366; margin-top: -5px; margin-bottom: 10px; display: block; font-weight: 600; }
-
         .btn-row { display: flex; gap: 10px; }
         .set-btn { background: #25D366; color: white; border: none; padding: 12px; font-weight: bold; border-radius: 6px; cursor: pointer; flex: 2; }
         .set-btn:disabled { background: #cccccc; cursor: not-allowed; }
@@ -65,24 +178,28 @@
         .delete-btn { background: #ff4444; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; }
 
         /* ==================== CHAT ACTION BUTTON ==================== */
-        .chat-toggle-panel { background: #ffffff; padding: 15px; border-radius: 12px; margin-bottom: 25px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
-        .open-chat-modal-btn { background: #0088cc; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
+        .chat-toggle-panel {
+            background: #ffffff; padding: 15px; border-radius: 12px; margin-bottom: 25px;
+            border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;
+        }
+        .open-chat-modal-btn {
+            background: #0088cc; color: white; border: none; padding: 12px 24px;
+            border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.95rem;
+            display: flex; align-items: center; gap: 8px; transition: 0.2s;
+        }
         .open-chat-modal-btn:hover { background: #0077b3; }
         .total-unread-badge { background: #25D366; color: white; border-radius: 50%; padding: 3px 8px; font-size: 0.8rem; font-weight: bold; }
 
-        /* ==================== LIVE INBOX MAIN FULL WINDOW OVERLAY ==================== */
+        /* ==================== LIVE INBOX MODAL OVERLAY ==================== */
         .chat-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f4f6f9; z-index: 1000; display: none; flex-direction: column; }
         .chat-modal-header { background: #0088cc; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 1.1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .close-modal-btn { background: none; border: none; color: white; font-size: 1.6rem; cursor: pointer; font-weight: bold; padding: 0 10px; }
         .admin-chat-container { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
-
-        /* WHATSAPP STYLE CONTACTS LIST VIEW */
         .users-sidebar { width: 100%; height: 100%; background: #ffffff; display: flex; flex-direction: column; overflow-y: auto; }
         .user-item { padding: 16px 20px; border-bottom: 1px solid #f0f2f5; cursor: pointer; font-weight: 600; color: #1a1a1a; display: flex; justify-content: space-between; align-items: center; transition: 0.2s ease; font-size: 1rem; }
         .user-item:hover { background: #f8f9fa; }
         .unread-count-badge { background: #25D366; color: white; min-width: 22px; height: 22px; border-radius: 50%; font-size: 0.8rem; display: flex; justify-content: center; align-items: center; font-weight: bold; padding: 2px; flex-shrink: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-
-        /* ==================== SEPARATE WINDOW CHAT VIEW ==================== */
+        
         .chat-area { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; flex-direction: column; background: #efeae2; z-index: 5; }
         .chat-area-header { padding: 12px 15px; background: #0088cc; color: white; font-weight: bold; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
         .back-list-btn { background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer; font-weight: bold; padding-right: 5px; }
@@ -90,38 +207,48 @@
         .adm-bubble { padding: 10px 14px; border-radius: 10px; max-width: 80%; font-size: 0.95rem; line-height: 1.4; word-wrap: break-word; }
         .adm-b-user { background: #ffffff; align-self: flex-start; color: #1a1a1a; box-shadow: 0 1px 2px rgba(0,0,0,0.1); border-bottom-left-radius: 2px; }
         .adm-b-admin { background: #d9fdd3; align-self: flex-end; color: #1a1a1a; box-shadow: 0 1px 2px rgba(0,0,0,0.1); border-bottom-right-radius: 2px; }
-        .admin-input-box { padding: 12px; background: #ffffff; display: flex; gap: 10px; border-top: 1px solid #cbd5e1; align-items: center; box-shadow: 0 -2px 10px rgba(0,0,0,0.03); }
+        .admin-input-box { padding: 12px; background: #ffffff; display: flex; gap: 10px; border-top: 1px solid #cbd5e1; align-items: center; }
         .admin-input-box input { flex: 1; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 24px; outline: none; font-size: 0.95rem; background: #f0f2f5; }
-        .admin-input-box button { background: #0088cc; color: white; border: none; padding: 12px 22px; border-radius: 24px; font-weight: bold; font-size: 0.95rem; cursor: pointer; transition: 0.2s; flex-shrink: 0; }
-        .admin-input-box button:hover { background: #0077b3; }
+        .admin-input-box button { background: #0088cc; color: white; border: none; padding: 12px 22px; border-radius: 24px; font-weight: bold; font-size: 0.95rem; cursor: pointer; flex-shrink: 0; }
+        
+        .logout-btn { position: absolute; top: 20px; right: 20px; background: #ff4444; color: white; border: none; padding: 8px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div id="loginOverlay" class="login-overlay">
         <div class="login-box">
-            <h2>Admin Control Access</h2>
-            <p>Sign in with Firebase Credentials</p>
             
-            <input type="email" id="adminEmail" placeholder="Email Address">
-            <input type="password" id="adminPassword" placeholder="Password">
+            <h1 class="login-title">NAVEED DIRAJ</h1> 
             
-            <button id="loginBtn" onclick="loginWithFirebase()">Login Securely</button>
-            <span id="loginError" class="error-msg"></span>
+            <h2>Group Store Login</h2>
+            
+            <div class="input-group">
+                <label for="adminEmail">Gmail</label>
+                <input type="email" id="adminEmail" placeholder="Enter Gmail">
+            </div>
+            
+            <div class="input-group">
+                <label for="adminPassword">Password</label>
+                <input type="password" id="adminPassword" placeholder="Enter Password">
+            </div>
+            
+            <button onclick="loginWithFirebaseAuth()">🔓 Access Admin Panel</button>
         </div>
     </div>
 
-    <div class="admin-container" id="adminDashboard">
+    <div class="admin-container" id="adminContainer">
+        <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
         <h1>🛠️ WhatsApp Store - Admin Control Panel</h1>
-        
-        <div class="header-actions">
-            <button class="logout-btn" onclick="logoutFirebase()">Logout Panel</button>
-        </div>
 
         <div class="stats-grid">
             <div class="stat-card online-card">
                 <h3>Online Now</h3>
                 <div class="count" id="liveOnlineCount">0</div>
+            </div>
+            <div class="stat-card total-groups-card">
+                <h3>Total Groups</h3>
+                <div class="count" id="totalGroupsCount">0</div>
             </div>
             <div class="stat-card visitors-card">
                 <h3>Today Visitors</h3>
@@ -135,10 +262,8 @@
         
         <div class="featured-panel">
             <h2>Manage Main Notification Alert PopUp</h2>
-            
             <input type="url" id="featLink" placeholder="Paste WhatsApp Group Invite Link Here">
             <span id="featFetchStatus" class="status-text"></span>
-
             <div class="admin-preview-box">
                 <img id="featPrevImg" src="https://cdn-icons-png.flaticon.com/512/124/124034.png" class="admin-preview-dp">
                 <div>
@@ -146,10 +271,8 @@
                     <div style="font-size:0.75rem; color:#999;">Auto Fetched Status</div>
                 </div>
             </div>
-
             <input type="hidden" id="featName">
             <input type="hidden" id="featDp">
-
             <div class="btn-row">
                 <button class="set-btn" id="featSubmitBtn" onclick="updateFeaturedGroup()" disabled>Activate Notification Alert</button>
                 <button class="off-btn" onclick="turnOffNotification()">Turn Off Alert</button>
@@ -172,22 +295,16 @@
             <span>📥 Customer Inbox Control</span>
             <button class="close-modal-btn" onclick="toggleChatModal(false)">✕</button>
         </div>
-        
         <div class="admin-chat-container">
             <div class="users-sidebar" id="usersSidebar">
-                <div id="usersListContainer">
-                    <p style="padding: 20px; color: #888; text-align: center;">Loading chats...</p>
-                </div>
+                <div id="usersListContainer"><p style="padding: 20px; color: #888; text-align: center;">Loading chats...</p></div>
             </div>
-
             <div class="chat-area" id="chatAreaWindow">
                 <div class="chat-area-header">
                     <button class="back-list-btn" onclick="closeChatWindow()">← Back</button>
                     <span id="currentChatHeader">💬 Chatting Panel</span>
                 </div>
-                
                 <div class="messages-box" id="adminMessagesBox"></div>
-                
                 <div class="admin-input-box">
                     <input type="text" id="adminReplyInput" placeholder="Type your reply here..." disabled>
                     <button id="adminSendBtn" onclick="sendAdminReply()" disabled>Send</button>
@@ -197,7 +314,7 @@
     </div>
 
     <script>
-        // Firebase Configuration Setup
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyC3JsvLkWcoZzkLJIxMNW11juiEHb2Buqg",
             authDomain: "whatsapp-groups-store-6ea14.firebaseapp.com",
@@ -210,75 +327,47 @@
         const db = firebase.firestore();
         const auth = firebase.auth();
 
-        // Auth State Listener: Agar user pehle se logged in hai toh seedha dashboard khol do
+        // Monitor Auth State Changes
         auth.onAuthStateChanged((user) => {
             if (user) {
                 document.getElementById("loginOverlay").style.display = "none";
-                document.getElementById("adminDashboard").style.display = "block";
-                
-                // Dashboard Data Sync Loaders
+                document.getElementById("adminContainer").style.display = "block";
                 loadAdminData();
                 loadCurrentFeatured(); 
                 loadSupportChats(); 
                 startAnalyticsTracking();
             } else {
                 document.getElementById("loginOverlay").style.display = "flex";
-                document.getElementById("adminDashboard").style.display = "none";
+                document.getElementById("adminContainer").style.display = "none";
             }
         });
 
-        // Firebase Sign In Function
-        function loginWithFirebase() {
+        // Email and Password Sign In Handler
+        function loginWithFirebaseAuth() {
             const email = document.getElementById("adminEmail").value.trim();
-            const password = document.getElementById("adminPassword").value.trim();
-            const errorSpan = document.getElementById("loginError");
-            const loginBtn = document.getElementById("loginBtn");
+            const password = document.getElementById("adminPassword").value;
 
-            if(!email || !password) {
-                errorSpan.innerText = "Please fill all login fields.";
+            if (!email || !password) {
+                alert("Please fill in both Gmail and Password fields.");
                 return;
             }
 
-            errorSpan.innerText = "";
-            loginBtn.innerText = "Connecting & Verifying...";
-            loginBtn.disabled = true;
-
             auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    loginBtn.innerText = "Login Securely";
-                    loginBtn.disabled = false;
-                })
                 .catch((error) => {
-                    loginBtn.innerText = "Login Securely";
-                    loginBtn.disabled = false;
-                    console.error(error);
-                    if(error.code === "auth/network-request-failed") {
-                        errorSpan.innerText = "Network Error! Local files block Firebase requests. Please host this file online to login.";
-                    } else {
-                        errorSpan.innerText = "Invalid Admin Credentials! Check email or password.";
-                    }
+                    alert("Error: " + error.message);
                 });
         }
 
-        // Firebase Logout Function
-        function logoutFirebase() {
-            if(confirm("Are you sure you want to lock and logout panel?")) {
-                auth.signOut().then(() => {
-                    window.location.reload();
-                });
-            }
+        function logoutAdmin() {
+            auth.signOut().then(() => { location.reload(); });
         }
 
-        // ==================== LIVE TRAFFIC TRACKING ANALYTICS SYSTEM ====================
+        // Realtime Tracking System
         function startAnalyticsTracking() {
             const todayStr = new Date().toISOString().split('T')[0];
 
             db.collection("site_analytics").doc(todayStr).onSnapshot((doc) => {
-                if (doc.exists) {
-                    document.getElementById("todayVisitorsCount").innerText = doc.data().visitors || 0;
-                } else {
-                    document.getElementById("todayVisitorsCount").innerText = 0;
-                }
+                if (doc.exists) document.getElementById("todayVisitorsCount").innerText = doc.data().visitors || 0;
             });
 
             const clearTime = firebase.firestore.Timestamp.fromDate(new Date(Date.now() - 2 * 60 * 1000));
@@ -286,8 +375,12 @@
                 document.getElementById("liveOnlineCount").innerText = snap.size;
             });
 
-            const startOfToday = new Date();
-            startOfToday.setHours(0,0,0,0);
+            // LIVE REALTIME CALCULATE TOTAL GROUPS COUNT
+            db.collection("whatsapp_groups").onSnapshot((snap) => {
+                document.getElementById("totalGroupsCount").innerText = snap.size;
+            });
+
+            const startOfToday = new Date(); startOfToday.setHours(0,0,0,0);
             db.collection("whatsapp_groups").where("timestamp", ">=", startOfToday).onSnapshot((snap) => {
                 document.getElementById("todayGroupsCount").innerText = snap.size;
             });
@@ -299,201 +392,4 @@
         }
 
         function loadCurrentFeatured() {
-            db.collection("featured_group").doc("pinned").get().then((doc) => {
-                if(doc.exists) {
-                    const data = doc.data();
-                    if(data.active) {
-                        document.getElementById("featLink").value = data.link || "";
-                        document.getElementById("featName").value = data.name || "";
-                        document.getElementById("featDp").value = data.dp || "";
-                        document.getElementById("featPrevName").innerText = data.name || "";
-                        if(data.dp) document.getElementById("featPrevImg").src = data.dp;
-                        document.getElementById("featSubmitBtn").disabled = false;
-                    }
-                }
-            });
-        }
-
-        // ==================== ADMIN AUTO-FETCH LOGIC ====================
-        const featLinkInput = document.getElementById("featLink");
-        const featFetchStatus = document.getElementById("featFetchStatus");
-        const featSubmitBtn = document.getElementById("featSubmitBtn");
-        const featNameInput = document.getElementById("featName");
-        const featDpInput = document.getElementById("featDp");
-        const featPrevImg = document.getElementById("featPrevImg");
-        const featPrevName = document.getElementById("featPrevName");
-
-        if(featLinkInput) {
-            featLinkInput.addEventListener("input", async (e) => {
-                const url = e.target.value.trim();
-                if(url.includes("chat.whatsapp.com/")) {
-                    featFetchStatus.style.color = "#25D366";
-                    featFetchStatus.innerText = "Fetching group details... Please wait.";
-                    featSubmitBtn.disabled = true;
-                    try {
-                        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-                        const response = await fetch(proxyUrl);
-                        const data = await response.json();
-                        if(data.contents) {
-                            const parser = new DOMParser();
-                            const doc = parser.parseFromString(data.contents, "text/html");
-                            const metaTitle = doc.querySelector('meta[property="og:title"]');
-                            const metaImage = doc.querySelector('meta[property="og:image"]');
-                            let gName = metaTitle ? metaTitle.getAttribute('content') : "";
-                            let gDp = metaImage ? metaImage.getAttribute('content') : "";
-                            if(gName && gName !== "WhatsApp Group Invite") {
-                                featNameInput.value = gName;
-                                featDpInput.value = gDp;
-                                featPrevName.innerText = gName;
-                                if(gDp) featPrevImg.src = gDp;
-                                featFetchStatus.innerText = "Details fetched successfully!";
-                                featSubmitBtn.disabled = false;
-                            } else {
-                                featFetchStatus.style.color = "#ff4444";
-                                featFetchStatus.innerText = "Could not read group. Enter valid link.";
-                                featSubmitBtn.disabled = true;
-                            }
-                        }
-                    } catch (err) {
-                        featFetchStatus.style.color = "#ff4444";
-                        featFetchStatus.innerText = "Network issue fetching details.";
-                        featSubmitBtn.disabled = true;
-                    }
-                } else { featFetchStatus.innerText = ""; }
-            });
-        }
-
-        function updateFeaturedGroup() {
-            const name = featNameInput.value;
-            const link = featLinkInput.value.trim();
-            const dp = featDpInput.value || "https://cdn-icons-png.flaticon.com/512/124/124034.png";
-            if(!name || !link) { alert("Please let the system fetch the group first."); return; }
-            db.collection("featured_group").doc("pinned").set({
-                name: name, link: link, dp: dp, active: true
-            }).then(() => alert("Notification activated successfully on Main Site!"));
-        }
-
-        function turnOffNotification() {
-            db.collection("featured_group").doc("pinned").update({ active: false }).then(() => {
-                alert("Notification Alert has been turned OFF.");
-                featLinkInput.value = ""; featNameInput.value = ""; featDpInput.value = "";
-                featPrevImg.src = "https://cdn-icons-png.flaticon.com/512/124/124034.png";
-                featPrevName.innerText = "Notification Group Preview";
-                featFetchStatus.innerText = ""; featSubmitBtn.disabled = true;
-            });
-        }
-
-        function loadAdminData() {
-            db.collection("whatsapp_groups").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
-                const adminGrid = document.getElementById("adminGrid");
-                adminGrid.innerHTML = "";
-                snapshot.forEach((doc) => {
-                    const group = doc.data();
-                    adminGrid.innerHTML += `
-                        <div class="admin-card">
-                            <div class="group-details">
-                                <img src="${group.dp || 'https://cdn-icons-png.flaticon.com/512/124/124034.png'}" class="group-img">
-                                <div><h3>${group.name}</h3><span style="font-size:11px;background:#eee;padding:2px 5px;border-radius:4px;">${group.category}</span></div>
-                            </div>
-                            <button class="delete-btn" onclick="deleteGroup('${doc.id}')">Delete</button>
-                        </div>`;
-                });
-            });
-        }
-
-        function deleteGroup(id) {
-            if(confirm("Delete group permanently?")) { db.collection("whatsapp_groups").doc(id).delete(); }
-        }
-
-        let selectedUserId = null;
-        let unsubscribeMessages = null;
-
-        function loadSupportChats() {
-            db.collection("support_chats").orderBy("lastActive", "desc").onSnapshot((snap) => {
-                if (snap.empty) {
-                    document.getElementById("usersListContainer").innerHTML = `<p style="padding: 20px; color: #888; text-align: center;">Koi active chat nahi mili.</p>`;
-                    updateMainButtonCounter(0); return;
-                }
-                let userPromises = [];
-                snap.forEach(userDoc => {
-                    const userData = userDoc.data();
-                    const uId = userData.userId;
-                    let p = db.collection("support_chats").doc(uId).collection("messages")
-                        .where("sender", "==", "user").get().then(msgSnap => {
-                            let count = 0;
-                            msgSnap.forEach(mDoc => { if(mDoc.data().unread !== false) { count++; } });
-                            return { id: uId, unreadCount: count };
-                        });
-                    userPromises.push(p);
-                });
-
-                Promise.all(userPromises).then(usersDataArray => {
-                    let html = ""; let totalUnreadInboxes = 0;
-                    usersDataArray.forEach(user => {
-                        if (user.id === selectedUserId) { user.unreadCount = 0; }
-                        if(user.unreadCount > 0) { totalUnreadInboxes += user.unreadCount; }
-                        let badgeHtml = "";
-                        if(user.unreadCount > 0) { badgeHtml = `<span class="unread-count-badge">${user.unreadCount}</span>`; }
-                        html += `<div class="user-item" onclick="selectUser('${user.id}')">
-                                    <span>👤 User ID: ${user.id}</span>
-                                    ${badgeHtml}
-                                 </div>`;
-                    });
-                    document.getElementById("usersListContainer").innerHTML = html;
-                    updateMainButtonCounter(totalUnreadInboxes);
-                });
-            });
-        }
-
-        function updateMainButtonCounter(total) {
-            const btnCounter = document.getElementById("mainBtnCounter");
-            if(total > 0) { btnCounter.innerText = total; btnCounter.style.display = "inline-block"; } 
-            else { btnCounter.style.display = "none"; }
-        }
-
-        function selectUser(userId) {
-            selectedUserId = userId;
-            document.getElementById("currentChatHeader").innerText = "Active User: " + userId;
-            document.getElementById("adminReplyInput").disabled = false;
-            document.getElementById("adminSendBtn").disabled = false;
-            document.getElementById("chatAreaWindow").style.display = "flex";
-
-            db.collection("support_chats").doc(userId).collection("messages").where("sender", "==", "user")
-                .get().then(snap => {
-                    let batch = db.batch();
-                    snap.forEach(doc => { if(doc.data().unread !== false) { batch.update(doc.ref, { unread: false }); } });
-                    batch.commit().then(() => { loadSupportChats(); });
-                });
-
-            if (unsubscribeMessages) unsubscribeMessages();
-            unsubscribeMessages = db.collection("support_chats").doc(userId).collection("messages").orderBy("timestamp", "asc")
-                .onSnapshot((snap) => {
-                    let html = "";
-                    snap.forEach(doc => {
-                        const m = doc.data(); const bClass = (m.sender === "user") ? "adm-b-user" : "adm-b-admin";
-                        html += `<div class="adm-bubble ${bClass}">${m.text}</div>`;
-                    });
-                    const box = document.getElementById("adminMessagesBox"); box.innerHTML = html; box.scrollTop = box.scrollHeight;
-                });
-        }
-
-        function closeChatWindow() {
-            selectedUserId = null; document.getElementById("chatAreaWindow").style.display = "none";
-            if (unsubscribeMessages) unsubscribeMessages(); loadSupportChats();
-        }
-
-        const replyInput = document.getElementById("adminReplyInput");
-        if(replyInput) {
-            replyInput.addEventListener("keypress", (e) => { if(e.key === "Enter") sendAdminReply(); });
-        }
-
-        function sendAdminReply() {
-            const text = replyInput.value.trim(); if (text === "" || !selectedUserId) return;
-            db.collection("support_chats").doc(selectedUserId).collection("messages").add({
-                sender: "admin", text: text, timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            replyInput.value = "";
-        }
-    </script>
-</body>
-</html>
+            db.collection("featured_group").doc
